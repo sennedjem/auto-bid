@@ -3,27 +3,29 @@ var n = 0
 function falopa(){
 	var lengthItems = getPageItems().length;
 	if(n<lengthItems){
-		var item = obtenerSiguienteItem(n)
-		pasarASiguienteItem(item)
+		var item = getNextItem(n)
+		setNextItemInView(item)
 		var bidParams = {_observers:[{cb:getAppMain().getRootViewController().getPresentedViewController().getCurrentViewController().getCurrentController()._itemDetailController._currentController._onBid,scope:getAppMain().getRootViewController().getPresentedViewController().getCurrentViewController().getCurrentController()._itemDetailController._currentController}]}
-		var precio = getBidPrice(item)
-		pujar(bidParams,precio)
+		var price = getBidPrice(item)
+		makeBid(bidParams,price)
 		n = n+1
 		setTimeout(function myFunction() {
 		  falopa(n)
 		}, 1500);
+	} else {
+		n = 0
 	}
 }
 
-function pujar(bidParams,precio){
+function makeBid(bidParams,precio){
 	getAppMain().getRootViewController().getPresentedViewController().getCurrentViewController().getCurrentController()._itemDetailController._currentController._onBid(bidParams,precio)
 }
 
-function obtenerSiguienteItem(n){
+function getNextItem(n){
 	return getAppMain().getRootViewController().getPresentedViewController().getCurrentViewController().getCurrentController()._listController._paginationViewModel._paginationList._collection[n]
 }
 
-function pasarASiguienteItem(item){
+function setNextItemInView(item){
 	getAppMain().getRootViewController().getPresentedViewController().getCurrentViewController().getCurrentController()._listController._eRowSelected(getAppMain().getRootViewController().getPresentedViewController().getCurrentViewController().getCurrentController()._listController._view, "rowselect", { item: item })
 }
 
