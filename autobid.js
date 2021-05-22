@@ -20,7 +20,7 @@ function pujar(bidParams,precio){
 }
 
 function obtenerSiguienteItem(n){
-	getAppMain().getRootViewController().getPresentedViewController().getCurrentViewController().getCurrentController()._listController._paginationViewModel._paginationList._collection[n]
+	return getAppMain().getRootViewController().getPresentedViewController().getCurrentViewController().getCurrentController()._listController._paginationViewModel._paginationList._collection[n]
 }
 
 function pasarASiguienteItem(item){
