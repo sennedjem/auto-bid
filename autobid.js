@@ -34,5 +34,6 @@ function getPageItems(){
 }
 
 function getBidPrice(item){
-	return item._auction.currentBid?item._auction.currentBid:item._auction.startingBid
+	return item._auction.currentBid?UTCurrencyInputControl.getIncrementAboveVal(item._auction.currentBid):item._auction.startingBid
 }
+
